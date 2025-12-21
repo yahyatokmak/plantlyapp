@@ -1,7 +1,7 @@
 name: plantlyapp
-description: "A new Flutter project."
+description: "PlantApp Case Study - Plant identification and care guide app"
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0+1
 
 environment:
   sdk: ^3.10.1
@@ -10,10 +10,37 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # State Management
+  flutter_bloc: ^9.1.1
+
+  # Networking
+  dio: ^5.9.0
+
+  # Routing
+  go_router: ^17.0.1
+
+  # Data Classes
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+
+  # Image Caching
+  cached_network_image: ^3.4.1
+
+  # Local Storage
+  shared_preferences: ^2.5.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
 
+  # Code Generation
+  build_runner: ^2.10.4
+  freezed: ^3.2.3
+  json_serializable: ^6.11.3
+
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
