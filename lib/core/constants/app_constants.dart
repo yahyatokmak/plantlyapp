@@ -1,0 +1,29 @@
+abstract final class AppConstants {
+  // App Info
+  static const String appName = 'PlantApp';
+  static const String appVersion = '1.0.0';
+
+  // Spacing
+  static const double spacingXs = 4.0;
+  static const double spacingSm = 8.0;
+  static const double spacingMd = 16.0;
+  static const double spacingLg = 24.0;
+  static const double spacingXl = 32.0;
+  static const double spacingXxl = 48.0;
+
+  // Border Radius
+  static const double radiusSm = 8.0;
+  static const double radiusMd = 12.0;
+  static const double radiusLg = 16.0;
+  static const double radiusXl = 24.0;
+  static const double radiusFull = 100.0;
+
+  // Animation Durations
+  static const Duration animationFast = Duration(milliseconds: 150);
+  static const Duration animationNormal = Duration(milliseconds: 300);
+  static const Duration animationSlow = Duration(milliseconds: 500);
+
+  // Page Padding
+  static const double pagePaddingHorizontal = 24.0;
+  static const double pagePaddingVertical = 16.0;
+}
