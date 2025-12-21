@@ -30,6 +30,11 @@ abstract final class AppColors {
   // Overlay
   static const Color overlay = Color(0x80000000);
 
+  // Snackbar Colors
+  static const Color red = Color(0xFFE53935);
+  static const Color orange = Color(0xFFFB8C00);
+  static const Color green700 = Color(0xFF388E3C);
+
   // Gradients
   static const LinearGradient primaryGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [gradientStart, gradientEnd]);
 
