@@ -47,6 +47,12 @@ abstract final class AppColors {
   static const Color orange = Color(0xFFFB8C00);
   static const Color green700 = Color(0xFF388E3C);
 
+  // Premium Banner Colors (Home Page)
+  static const Color premiumBannerBg = Color(0xFF24201A);
+  static const Color premiumGold = Color(0xFFE4B046);
+  static const Color premiumGoldLight = Color(0xFFF0D399);
+  static const Color premiumGoldDark = Color(0xFFD9A846);
+
   // Gradients
   static const LinearGradient primaryGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primaryGreen, primaryGreenDark]);
 
@@ -55,4 +61,16 @@ abstract final class AppColors {
   static const LinearGradient premiumGradient = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [primaryGreen, premiumGradientEnd]);
 
   static const LinearGradient backgroundGradient = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [backgroundLight, backgroundGrey]);
+
+  static const LinearGradient premiumIconGradient = LinearGradient(
+    begin: Alignment(-0.5, -0.5),
+    end: Alignment(1.0, 1.0),
+    colors: [premiumGoldLight, premiumGoldDark],
+  );
+
+  static const LinearGradient premiumTitleGradient = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [Color(0xFFE6C990), Color(0xFFE4B046)],
+  );
 }
