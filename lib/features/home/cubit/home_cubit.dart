@@ -35,4 +35,22 @@ class HomeCubit extends Cubit<HomeState> {
       ));
     }
   }
+
+  Future<void> refresh() async {
+    try {
+      final categoriesFuture = _repository.getCategories();
+      final questionsFuture = _repository.getQuestions();
+
+      final categories = await categoriesFuture;
+      final questions = await questionsFuture;
+
+      emit(state.copyWith(
+        status: HomeStatus.success,
+        categories: categories,
+        questions: questions,
+      ));
+    } catch (_) {
+      // Silent fail on refresh - keep existing data
+    }
+  }
 }

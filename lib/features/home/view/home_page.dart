@@ -70,12 +70,16 @@ class HomePage extends StatelessWidget {
                     );
                   }
 
-                  return SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: AppConstants.pagePaddingVertical),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                  return RefreshIndicator(
+                    color: AppColors.primaryGreen,
+                    onRefresh: () => context.read<HomeCubit>().refresh(),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: AppConstants.pagePaddingVertical),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                           // Header
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
@@ -143,7 +147,8 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 24),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
