@@ -7,6 +7,7 @@ import '../../../core/router/route_names.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/widgets/app_bottom_nav_bar.dart';
+import '../../../core/widgets/fade_in_widget.dart';
 import '../../../core/widgets/loading_indicator.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
@@ -84,58 +85,72 @@ class HomePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Header
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Hi, plant lover!', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textPrimary)),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    _getGreeting(),
-                                    style: AppTextStyles.heading2.copyWith(color: AppColors.textPrimary, fontWeight: FontWeight.w600),
-                                  ),
-                                ],
+                            FadeInWidget(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Hi, plant lover!', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textPrimary)),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      _getGreeting(),
+                                      style: AppTextStyles.heading2.copyWith(color: AppColors.textPrimary, fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(height: 12),
                             // Search
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                              child: const SearchField(),
+                            FadeInWidget(
+                              delay: const Duration(milliseconds: 100),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                                child: const SearchField(),
+                              ),
                             ),
                             const SizedBox(height: 20),
                             // Premium Banner
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                              child: PremiumBanner(onTap: () => context.push(AppRoute.paywall.path)),
+                            FadeInWidget(
+                              delay: const Duration(milliseconds: 200),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                                child: PremiumBanner(onTap: () => context.push(AppRoute.paywall.path)),
+                              ),
                             ),
                             const SizedBox(height: 20),
                             // Questions List (NO section title per design)
-                            SizedBox(
-                              height: 164,
-                              child: ListView.separated(
-                                scrollDirection: Axis.horizontal,
-                                padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                                itemCount: state.questions.length,
-                                separatorBuilder: (context, index) => const SizedBox(width: 10),
-                                itemBuilder: (context, index) {
-                                  return QuestionCard(question: state.questions[index]);
-                                },
+                            FadeInWidget(
+                              delay: const Duration(milliseconds: 300),
+                              child: SizedBox(
+                                height: 164,
+                                child: ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                                  itemCount: state.questions.length,
+                                  separatorBuilder: (context, index) => const SizedBox(width: 10),
+                                  itemBuilder: (context, index) {
+                                    return QuestionCard(question: state.questions[index]);
+                                  },
+                                ),
                               ),
                             ),
                             const SizedBox(height: 20),
                             // Categories Grid (2 columns)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                              child: GridView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0),
-                                itemCount: state.categories.length,
-                                itemBuilder: (context, index) {
-                                  return CategoryCard(category: state.categories[index]);
-                                },
+                            FadeInWidget(
+                              delay: const Duration(milliseconds: 400),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0),
+                                  itemCount: state.categories.length,
+                                  itemBuilder: (context, index) {
+                                    return CategoryCard(category: state.categories[index]);
+                                  },
+                                ),
                               ),
                             ),
                             const SizedBox(height: 100),

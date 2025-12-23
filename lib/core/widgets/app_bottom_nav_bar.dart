@@ -48,14 +48,16 @@ class _NavItem extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
-        width: 60,
+        width: MediaQuery.of(context).size.width * 0.18,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(icon, width: 24, height: 24, color: color),
             const SizedBox(height: 4),
-            Text(label, style: AppTextStyles.bodySmall.copyWith(color: color)),
+            Flexible(
+              child: Text(label, style: AppTextStyles.bodySmall.copyWith(color: color)),
+            ),
           ],
         ),
       ),

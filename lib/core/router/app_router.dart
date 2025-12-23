@@ -15,10 +15,26 @@ class AppRouter {
       initialLocation: _getInitialRoute(),
       debugLogDiagnostics: true,
       routes: [
-        GoRoute(path: AppRoute.getStarted.path, name: AppRoute.getStarted.name, builder: (context, state) => const GetStartedPage()),
-        GoRoute(path: AppRoute.onboarding.path, name: AppRoute.onboarding.name, builder: (context, state) => const OnboardingPage()),
-        GoRoute(path: AppRoute.paywall.path, name: AppRoute.paywall.name, builder: (context, state) => const PaywallPage()),
-        GoRoute(path: AppRoute.home.path, name: AppRoute.home.name, builder: (context, state) => const HomePage()),
+        GoRoute(
+          path: AppRoute.getStarted.path,
+          name: AppRoute.getStarted.name,
+          builder: (context, state) => const GetStartedPage(),
+        ),
+        GoRoute(
+          path: AppRoute.onboarding.path,
+          name: AppRoute.onboarding.name,
+          builder: (context, state) => const OnboardingPage(),
+        ),
+        GoRoute(
+          path: AppRoute.paywall.path,
+          name: AppRoute.paywall.name,
+          builder: (context, state) => const PaywallPage(),
+        ),
+        GoRoute(
+          path: AppRoute.home.path,
+          name: AppRoute.home.name,
+          builder: (context, state) => const HomePage(),
+        ),
       ],
     );
   }
