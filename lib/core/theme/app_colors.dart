@@ -53,6 +53,10 @@ abstract final class AppColors {
   static const Color premiumGoldLight = Color(0xFFF0D399);
   static const Color premiumGoldDark = Color(0xFFD9A846);
 
+  // Bottom Nav Bar Colors
+  static const Color navInactive = Color(0xFFBDBDBD);
+  static const Color scannerButtonBorder = Color(0x3DFFFFFF); // 24% white
+
   // Gradients
   static const LinearGradient primaryGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primaryGreen, primaryGreenDark]);
 
@@ -72,5 +76,11 @@ abstract final class AppColors {
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
     colors: [Color(0xFFE6C990), Color(0xFFE4B046)],
+  );
+
+  static const LinearGradient scannerButtonGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xFF28AF6E), Color(0xFF2CCC80)],
   );
 }

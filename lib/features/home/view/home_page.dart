@@ -6,6 +6,7 @@ import '../../../core/network/dio_client.dart';
 import '../../../core/router/route_names.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../core/widgets/app_bottom_nav_bar.dart';
 import '../../../core/widgets/loading_indicator.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
@@ -34,18 +35,23 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeCubit(HomeRepository(DioClient()))..loadData(),
       child: Scaffold(
+        extendBody: true,
+        floatingActionButton: Container(
+          width: 64,
+          height: 64,
+          decoration: BoxDecoration(
+            gradient: AppColors.scannerButtonGradient,
+            shape: BoxShape.circle,
+            border: Border.all(color: AppColors.scannerButtonBorder, width: 4),
+          ),
+          child: Center(child: Image.asset('assets/images/scanner_icon.png', width: 24, height: 24, color: AppColors.white)),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: const AppBottomNavBar(currentIndex: 0),
         body: Stack(
           children: [
             // Background image at top
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                'assets/images/home_page_background.png',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
+            Positioned(top: 0, left: 0, right: 0, child: Image.asset('assets/images/home_page_background.png', fit: BoxFit.fitWidth)),
             // Content with gradient overlay
             SafeArea(
               child: BlocBuilder<HomeCubit, HomeState>(
@@ -61,10 +67,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Text(state.errorMessage ?? 'An error occurred', style: AppTextStyles.bodyMedium),
                           const SizedBox(height: 16),
-                          ElevatedButton(
-                            onPressed: () => context.read<HomeCubit>().loadData(),
-                            child: const Text('Retry'),
-                          ),
+                          ElevatedButton(onPressed: () => context.read<HomeCubit>().loadData(), child: const Text('Retry')),
                         ],
                       ),
                     );
@@ -80,73 +83,62 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                          // Header
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Hi, plant lover!',
-                                  style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textPrimary),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  _getGreeting(),
-                                  style: AppTextStyles.heading2.copyWith(
-                                    color: AppColors.textPrimary,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          // Search
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                            child: const SearchField(),
-                          ),
-                          const SizedBox(height: 20),
-                          // Premium Banner
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                            child: PremiumBanner(onTap: () => context.push(AppRoute.paywall.path)),
-                          ),
-                          const SizedBox(height: 20),
-                          // Questions List (NO section title per design)
-                          SizedBox(
-                            height: 164,
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
+                            // Header
+                            Padding(
                               padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                              itemCount: state.questions.length,
-                              separatorBuilder: (context, index) => const SizedBox(width: 10),
-                              itemBuilder: (context, index) {
-                                return QuestionCard(question: state.questions[index]);
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          // Categories Grid (2 columns)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
-                                childAspectRatio: 1.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Hi, plant lover!', style: AppTextStyles.bodyMedium.copyWith(color: AppColors.textPrimary)),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    _getGreeting(),
+                                    style: AppTextStyles.heading2.copyWith(color: AppColors.textPrimary, fontWeight: FontWeight.w600),
+                                  ),
+                                ],
                               ),
-                              itemCount: state.categories.length,
-                              itemBuilder: (context, index) {
-                                return CategoryCard(category: state.categories[index]);
-                              },
                             ),
-                          ),
-                          const SizedBox(height: 24),
+                            const SizedBox(height: 12),
+                            // Search
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                              child: const SearchField(),
+                            ),
+                            const SizedBox(height: 20),
+                            // Premium Banner
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                              child: PremiumBanner(onTap: () => context.push(AppRoute.paywall.path)),
+                            ),
+                            const SizedBox(height: 20),
+                            // Questions List (NO section title per design)
+                            SizedBox(
+                              height: 164,
+                              child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                                itemCount: state.questions.length,
+                                separatorBuilder: (context, index) => const SizedBox(width: 10),
+                                itemBuilder: (context, index) {
+                                  return QuestionCard(question: state.questions[index]);
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            // Categories Grid (2 columns)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: AppConstants.pagePaddingHorizontal),
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0),
+                                itemCount: state.categories.length,
+                                itemBuilder: (context, index) {
+                                  return CategoryCard(category: state.categories[index]);
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 100),
                           ],
                         ),
                       ),
