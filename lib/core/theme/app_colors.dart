@@ -15,13 +15,11 @@ abstract final class AppColors {
 
   // Background Colors
   static const Color background = Color(0xFFFBFAFA);
+  static const Color backgroundLight = Color(0xFFFCFCFC);
+  static const Color backgroundGrey = Color(0xFFF5F5F5);
   static const Color white = Color(0xFFFFFFFF);
   static const Color softGrey = Color(0xFFF4F4F4);
   static const Color iconBackground = Color(0xFFADB4BB);
-
-  // Gradient Colors
-  static const Color gradientStart = Color(0xFF28AF6E);
-  static const Color gradientEnd = Color(0xFF24A965);
 
   // Border Colors
   static const Color border = Color(0xFFE8E8E8);
@@ -36,7 +34,11 @@ abstract final class AppColors {
   static const Color green700 = Color(0xFF388E3C);
 
   // Gradients
-  static const LinearGradient primaryGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [gradientStart, gradientEnd]);
+  static const LinearGradient primaryGradient = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primaryGreen, primaryGreenDark]);
 
-  static const LinearGradient premiumGradient = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF28AF6E), Color(0xFF2CBA73)]);
+  static const Color premiumGradientEnd = Color(0xFF2CBA73);
+
+  static const LinearGradient premiumGradient = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [primaryGreen, premiumGradientEnd]);
+
+  static const LinearGradient backgroundGradient = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [backgroundLight, backgroundGrey]);
 }

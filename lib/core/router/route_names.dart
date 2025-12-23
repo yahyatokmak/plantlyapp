@@ -1,9 +1,11 @@
-abstract final class RouteNames {
-  // Onboarding
-  static const String getStarted = '/';
-  static const String onboarding = '/onboarding';
-  static const String paywall = '/paywall';
+enum AppRoute {
+  getStarted(path: '/', name: 'get_started'),
+  onboarding(path: '/onboarding', name: 'onboarding'),
+  paywall(path: '/paywall', name: 'paywall'),
+  home(path: '/home', name: 'home');
 
-  // Main
-  static const String home = '/home';
+  final String path;
+  final String name;
+
+  const AppRoute({required this.path, required this.name});
 }

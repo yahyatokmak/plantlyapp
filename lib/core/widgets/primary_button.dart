@@ -10,7 +10,7 @@ class PrimaryButton extends StatelessWidget {
   final double height;
   final EdgeInsetsGeometry? padding;
   final Color? backgroundColor;
-  final Color? textColor;
+  final TextStyle? textStyle;
   final double borderRadius;
 
   const PrimaryButton({
@@ -22,7 +22,7 @@ class PrimaryButton extends StatelessWidget {
     this.height = 56,
     this.padding,
     this.backgroundColor,
-    this.textColor,
+    this.textStyle,
     this.borderRadius = 12,
   });
 
@@ -35,7 +35,7 @@ class PrimaryButton extends StatelessWidget {
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor ?? AppColors.primaryGreen,
-          foregroundColor: textColor ?? AppColors.white,
+          foregroundColor: textStyle?.color ?? AppColors.white,
           padding: padding ?? const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
           elevation: 0,
@@ -43,7 +43,7 @@ class PrimaryButton extends StatelessWidget {
         ),
         child: isLoading
             ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation<Color>(AppColors.white)))
-            : Text(text, style: AppTextStyles.button.copyWith(color: textColor ?? AppColors.white)),
+            : Text(text, style: textStyle ?? AppTextStyles.button),
       ),
     );
   }
