@@ -28,6 +28,20 @@ abstract final class AppColors {
   // Overlay
   static const Color overlay = Color(0x80000000);
 
+  // Paywall Colors
+  static const Color paywallDark = Color(0xFF101E17);
+  static const Color paywallCardDark = Color(0xFF24312A);
+  static const Color paywallBorder = Color(0xFF3C4A40);
+  static const Color paywallWhite5 = Color(0x0DFFFFFF);
+  static const Color paywallWhite8 = Color(0x14FFFFFF);
+  static const Color paywallWhite30 = Color(0x4DFFFFFF);
+  static const Color paywallWhite50 = Color(0x80FFFFFF);
+  static const Color paywallWhite52 = Color(0x85FFFFFF);
+  static const Color paywallWhite70 = Color(0xB3FFFFFF);
+  static const Color paywallBlack24 = Color(0x3D000000);
+  static const Color paywallBlack40 = Color(0x66000000);
+  static const Color primaryGreen24 = Color(0x3D28AF6E);
+
   // Snackbar Colors
   static const Color red = Color(0xFFE53935);
   static const Color orange = Color(0xFFFB8C00);

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/router/route_names.dart' show AppRoute;
+import '../../../core/storage/local_storage.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/widgets/primary_button.dart';
@@ -85,9 +87,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             // Continue Button
                             PrimaryButton(
                               text: 'Continue',
-                              onPressed: () {
+                              onPressed: () async {
                                 if (state.isLastPage) {
-                                  context.go(AppRoute.paywall.path);
+                                  final prefs = await SharedPreferences.getInstance();
+                                  final localStorage = LocalStorage(prefs);
+                                  await localStorage.setOnboardingCompleted();
+                                  if (context.mounted) {
+                                    context.go(AppRoute.paywall.path);
+                                  }
                                 } else {
                                   context.read<OnboardingCubit>().nextPage();
                                 }
